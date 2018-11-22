@@ -1,4 +1,6 @@
-#!/usr/bin/env python3
+#!/usr/bin/env python
+
+__version__ = "1.0"
 
 import os.path
 import sqlite3
@@ -12,8 +14,12 @@ def ip_to_int(s):
     return (a << 24) + (b << 16) + (c << 8) + d
 
 
-def find(ip):
-    _c.execute("select s from cz where i <= ? order by i desc limit 1", (ip_to_int(ip),))
+def locate(ip):
+    i = ip_to_int(ip)
+    _c.execute("select s from cz where i <= ? order by i desc limit 1", (i,))
     o = _c.fetchone()
     if o:
         return o[0]
+
+
+find = locate  # alias
