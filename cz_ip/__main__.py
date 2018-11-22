@@ -1,5 +1,7 @@
 #!/usr/bin/env python
 
+from __future__ import print_function
+
 from . import locate
 
 try:
@@ -11,7 +13,8 @@ except NameError:
 if __name__ == '__main__':
     while True:
         try:
-            ip = input("ip: ")
+            ip = input().strip()
         except EOFError:
             break
-        print(locate(ip))
+        if ip:
+            print(ip, locate(ip), sep="\t")
